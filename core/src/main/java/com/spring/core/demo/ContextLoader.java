@@ -9,11 +9,6 @@ import org.springframework.context.support.GenericGroovyApplicationContext;
 
 public class ContextLoader {
 
-    public static void main(String[] args) {
-//        test01();
-//        test02();
-    }
-
     public static void test01(){
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("classpath:config/applicationContext.xml");
@@ -26,6 +21,10 @@ public class ContextLoader {
         new XmlBeanDefinitionReader(context).loadBeanDefinitions("config/applicationContext.xml");
         context.refresh();
         context.getBean("demo",Demo.class).print();
+    }
+
+    public static ApplicationContext load(){
+        return new ClassPathXmlApplicationContext("classpath:config/applicationContext.xml");
     }
 
 }

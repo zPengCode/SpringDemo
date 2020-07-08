@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 方法一 -->
+    <!--<context:property-placeholder location="classpath:config/config.properties"/>-->
+    <!-- 方法二 效果相同 -->
+    <bean id="mapping" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="properties">
+            <value>
+                spring.demo.param2=param2
+            </value>
+        </property>
+        <property name="locations" value="classpath:config/config.properties"/>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${spring.datasource.jdbc.driver}"/>
+        <property name="url" value="${spring.datasource.jdbc.url}"/>
+        <property name="username" value="${spring.datasource.jdbc.username}"/>
+        <property name="password" value="${spring.datasource.jdbc.password}"/>
+    </bean>
+</beans>

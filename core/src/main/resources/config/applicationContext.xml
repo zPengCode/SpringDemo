@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- annotation配置支持 -->
+    <context:annotation-config/>
+
+    <import resource="dataSource.xml"/>
     <!--普通类-->
     <bean id="demo" class="com.spring.core.demo.entity.Demo"/>
     <!--内部类-->
@@ -18,17 +22,31 @@
         <constructor-arg ref="demo"/>
     </bean>
 
-    <bean id="mapping" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
-        <property name="properties">
-            <value>
-                spring.demo.param2=param2
-            </value>
-        </property>
-        <property name="location" value="classpath:config/config.properties"/>
-    </bean>
-
     <bean id="demoP" class="com.spring.core.demo.entity.Demo"
           p:param1="${spring.demo.param1}"
           p:param2="${spring.demo.param2}"
     />
+
+    <bean id="lifecycleDemo" class="com.spring.core.demo.entity.LifecycleDemo"/>
+    <!-- 自定义的BeanPostProcessor -->
+    <bean class="com.spring.core.demo.entity.BeanPostProcessorDemo"/>
+
+    <!-- FactoryBean的实现 -->
+    <bean id="factoryBeanDemo" class="com.spring.core.demo.entity.FactoryBeanDemo"/>
+
+    <!-- 不使用唯一id，使用限定符区别相同类型的对象 -->
+
+    <bean class="com.spring.core.demo.entity.MovieCatalog">
+        <qualifier value="first"/>
+        <constructor-arg name="type" value="first"/>
+    </bean>
+
+    <bean class="com.spring.core.demo.entity.MovieCatalog">
+        <qualifier value="second"/>
+        <constructor-arg name="type" value="second"/>
+    </bean>
+
+    <bean id="qualifierDemo" class="com.spring.core.demo.entity.QualifierDemo"/>
+
+
 </beans>

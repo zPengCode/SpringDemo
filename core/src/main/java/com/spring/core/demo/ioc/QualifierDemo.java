@@ -1,4 +1,4 @@
-package com.spring.core.demo.entity;
+package com.spring.core.demo.ioc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

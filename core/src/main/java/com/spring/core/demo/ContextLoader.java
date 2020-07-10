@@ -1,11 +1,10 @@
 package com.spring.core.demo;
 
-import com.spring.core.demo.entity.Demo;
+import com.spring.core.demo.ioc.Demo;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.context.support.GenericGroovyApplicationContext;
 
 public class ContextLoader {
 

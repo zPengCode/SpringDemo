@@ -1,4 +1,4 @@
-package com.spring.core.demo.entity;
+package com.spring.core.demo.ioc;
 
 /**
  * @author zzp

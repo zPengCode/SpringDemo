@@ -3,6 +3,7 @@ package com.spring.core.demo;
 import com.spring.core.demo.ioc.Demo;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
@@ -24,6 +25,10 @@ public class ContextLoader {
 
     public static ApplicationContext load(){
         return new ClassPathXmlApplicationContext("classpath:config/applicationContext.xml");
+    }
+
+    public static ApplicationContext loadByClass(Class<?>...classes){
+        return new AnnotationConfigApplicationContext(classes);
     }
 
 }

@@ -51,4 +51,37 @@
     <!-- 泛型装配 -->
     <bean class="com.spring.core.demo.ioc.genericity.GenericityConfiguration"/>
     <bean id="genericityDemo" class="com.spring.core.demo.ioc.genericity.GenericityDemo"/>
+
+    <bean class="com.spring.core.demo.ioc.i18n.MessageConfig"/>
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>i18n.format</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 自定义数据转化 -->
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="com.spring.core.demo.type.ExoticType" value="com.spring.core.demo.type.ExoticTypeEditor"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean class="com.spring.core.demo.type.ExoticTypeEditor"/>
+
+    <bean id="exoticType" class="com.spring.core.demo.type.ExoticType">
+        <!--自定义转换器后，此处传入的参数已经无效-->
+        <constructor-arg name="name" value="123"/>
+    </bean>
+
+    <bean id="dependOnExoticType" class="com.spring.core.demo.type.DependOnExoticType">
+        <property name="exoticType" value="zzp====>"/>
+    </bean>
+
+
 </beans>

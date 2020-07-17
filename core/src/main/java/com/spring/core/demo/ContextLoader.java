@@ -27,6 +27,10 @@ public class ContextLoader {
         return new ClassPathXmlApplicationContext("classpath:config/applicationContext.xml");
     }
 
+    public static ApplicationContext load(String location){
+        return new ClassPathXmlApplicationContext(location);
+    }
+
     public static ApplicationContext loadByClass(Class<?>...classes){
         return new AnnotationConfigApplicationContext(classes);
     }

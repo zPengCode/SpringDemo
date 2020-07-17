@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--Spring AOP代理-->
+    <aop:config>
+        <aop:aspect id="myAspect" ref="myBean">
+            <aop:pointcut id="log" expression="@annotation(com.spring.core.demo.ioc.anno.Log)"/>
+            <aop:around method="around" pointcut-ref="log"/>
+        </aop:aspect>
+
+    </aop:config>
+
+    <!--强制使用cglib代理-->
+    <aop:config proxy-target-class="true">
+        <!-- other beans defined here... -->
+    </aop:config>
+    <!--aspectj强制使用cglib-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+
+<!--    <tx:advice id="tx-advice">-->
+<!--        <tx:attributes>-->
+<!--            <tx:method name="*" propagation="REQUIRED"/>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+
+    <bean id="myBean" class="com.spring.core.demo.aop.aspectj.AopXMLAspject"/>
+</beans>

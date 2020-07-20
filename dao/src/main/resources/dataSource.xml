@@ -42,4 +42,16 @@
         <!-- 切点拦截的使用事务处理 -->
         <aop:advisor advice-ref="tx-Advice" pointcut-ref="userServicePointcut"/>
     </aop:config>
+
+    <bean id="programUserService" class="com.spring.dao.demo.transction.service.impl.ProgramUserServiceImpl">
+        <constructor-arg name="transactionManager" ref="txManager"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userDao" class="com.spring.dao.demo.transction.dao.impl.UserDaoImpl">
+           <property name="jdbcTemplate" ref="dataSource"/>
+    </bean>
 </beans>
